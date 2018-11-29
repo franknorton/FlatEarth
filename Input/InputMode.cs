@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlatEarth
+namespace FlatEarth.Input
 {
-    public class Class1
+    public enum InputMode
     {
+        KeyboardAndMouse,
+        GamePad
     }
 }

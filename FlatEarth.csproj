@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1be65d86-db94-47b5-864b-4cc77773306e</ProjectGuid>
+    <ProjectGuid>{1BE65D86-DB94-47B5-864B-4CC77773306E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FlatEarth</RootNamespace>
@@ -30,24 +30,87 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="MonoGame.Framework, Version=3.7.0.1708, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MonoGame.Framework.Portable.3.7.0.1708\lib\portable-net45+win8+wpa81\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Actor.cs" />
+    <Compile Include="ActorSystem.cs" />
+    <Compile Include="Calculate.cs" />
+    <Compile Include="Collision\CircleCollider.cs" />
+    <Compile Include="Collision\CohenSutherland.cs" />
+    <Compile Include="Collision\Collide.cs" />
+    <Compile Include="Collision\Collider.cs" />
+    <Compile Include="Collision\ColliderList.cs" />
+    <Compile Include="Collision\GridCollider.cs" />
+    <Compile Include="Collision\RectCollider.cs" />
+    <Compile Include="Content.cs" />
+    <Compile Include="DataStructures\InfiniteGrid.cs" />
+    <Compile Include="DataStructures\Pool.cs" />
+    <Compile Include="DefaultResources.Designer.cs" />
+    <Compile Include="Defaults.cs" />
+    <Compile Include="DevConsole.cs" />
+    <Compile Include="ECS\Component.cs" />
+    <Compile Include="ECS\Entity.cs" />
+    <Compile Include="ECS\Scene.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Input\ControlCode.cs" />
+    <Compile Include="Input\ControlCodeParser.cs" />
+    <Compile Include="Input\Input.cs" />
+    <Compile Include="Input\InputAction.cs" />
+    <Compile Include="Input\InputAxis.cs" />
+    <Compile Include="Input\InputMap.cs" />
+    <Compile Include="Input\InputMode.cs" />
+    <Compile Include="Input\InputVector.cs" />
+    <Compile Include="Input\MouseExtensions.cs" />
+    <Compile Include="Input\PlayerInput.cs" />
+    <Compile Include="Input\SimpleGamepad.cs" />
+    <Compile Include="Input\SimpleKeyboard.cs" />
+    <Compile Include="Input\SimpleMouse.cs" />
+    <Compile Include="Lighting\LightRoom.cs" />
+    <Compile Include="Particles\Particle.cs" />
+    <Compile Include="Particles\ParticleEngine.cs" />
+    <Compile Include="Particles\ParticlePrototype.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\Camera.cs" />
+    <Compile Include="Rendering\DebugDraw.cs" />
+    <Compile Include="Rendering\FETexture.cs" />
+    <Compile Include="Rendering\Renderer.cs" />
+    <Compile Include="Rendering\RenderLayer.cs" />
+    <Compile Include="Rendering\RenderLayerList.cs" />
+    <Compile Include="Rendering\RenderLayerYSorted.cs" />
+    <Compile Include="Rendering\RenderObject.cs" />
+    <Compile Include="Resolution.cs" />
+    <Compile Include="Tiles\AutoTileParser.cs" />
+    <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="Tiles\TileSet.cs" />
+    <Compile Include="Utilities\BitOperations.cs" />
+    <Compile Include="Utilities\Json.cs" />
+    <Compile Include="Utilities\TextureRecompiler.cs" />
+    <Compile Include="Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DefaultResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\defaultFont.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
