@@ -29,11 +29,19 @@ namespace FlatEarth
         public static GameTime GameTime { get; private set; }
         public static float TimeRate = 1f;
 
+        public Engine() : base()
+        {
+            Graphics = new GraphicsDeviceManager(this);
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-
+            Input.Input.Initialize();
+            DebugDraw.Initialize(GraphicsDevice);
             FlatEarth.Window.Initialize(Window);
+            Resolution.SetVirtual(800, 600);
+            Resolution.Set(800, 600, false);
             Renderer = new Renderer();
             DefaultResourceContent = new ResourceContentManager(Services, DefaultResources.ResourceManager);
         }

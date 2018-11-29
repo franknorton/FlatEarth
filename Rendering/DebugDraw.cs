@@ -8,7 +8,6 @@ namespace FlatEarth
 {
     public static class DebugDraw
     {
-
         public static SpriteBatch SpriteBatch { get; private set; }
 
         public static void Initialize(GraphicsDevice graphicsDevice)
