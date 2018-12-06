@@ -17,6 +17,11 @@ namespace FlatEarth
 
         static Defaults()
         {
+            
+        }
+
+        public static void Initialize()
+        {
             PixelTexture = new Texture2D(Engine.Graphics.GraphicsDevice, 1, 1);
             PixelTexture.SetData<Color>(new Color[] { Color.White });
             FEPixelTexture = new FETexture(PixelTexture);

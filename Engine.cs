@@ -31,6 +31,7 @@ namespace FlatEarth
 
         public Engine() : base()
         {
+            Instance = this;
             Graphics = new GraphicsDeviceManager(this);
         }
 
@@ -38,12 +39,13 @@ namespace FlatEarth
         {
             base.Initialize();
             Input.Input.Initialize();
-            DebugDraw.Initialize(GraphicsDevice);
+            DebugDraw.Initialize(Graphics.GraphicsDevice);
             FlatEarth.Window.Initialize(Window);
-            Resolution.SetVirtual(800, 600);
-            Resolution.Set(800, 600, false);
+            Resolution.Set(1280, 1024, false);
+            Resolution.SetVirtual(800, 800);
             Renderer = new Renderer();
             DefaultResourceContent = new ResourceContentManager(Services, DefaultResources.ResourceManager);
+            Defaults.Initialize();
         }
 
         protected override void Update(GameTime gameTime)

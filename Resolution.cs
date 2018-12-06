@@ -45,11 +45,11 @@ namespace FlatEarth
         }
         public static void SwitchToVirtualViewport()
         {
-            Engine.Graphics.GraphicsDevice.Viewport = fullViewport;
+            Engine.Graphics.GraphicsDevice.Viewport = virtualViewport;
         }
         public static void SwitchToFullViewport()
         {
-            Engine.Graphics.GraphicsDevice.Viewport = virtualViewport;
+            Engine.Graphics.GraphicsDevice.Viewport = fullViewport;
         }
 
         private static void UpdateViewport()
@@ -59,20 +59,20 @@ namespace FlatEarth
         }
         private static void UpdateVirtualViewport()
         {
-            if(Width / VirtualWidth > Height / VirtualHeight) //Letterbox
+            if((float)Width / VirtualWidth > (float)Height / VirtualHeight) //Letterbox
             {
-                virtualViewport.Width = Height / VirtualHeight * VirtualWidth;
+                virtualViewport.Width = (int)((float)Height / VirtualHeight * VirtualWidth);
                 virtualViewport.Height = Height;
             }
             else //Pillarbox
             {
                 virtualViewport.Width = Width;
-                virtualViewport.Height = Width / VirtualWidth * VirtualHeight;
+                virtualViewport.Height = (int)((float)Width / VirtualWidth * VirtualHeight);
             }
 
-            virtualViewport.X = Width / 2 - virtualViewport.Width / 2;
-            virtualViewport.Y = Height / 2 - virtualViewport.Height / 2;
-            ScaleMatrix = Matrix.CreateScale(virtualViewport.Width / VirtualWidth);
+            virtualViewport.X = (int)((float)Width / 2f - virtualViewport.Width / 2f);
+            virtualViewport.Y = (int)((float)Height / 2f - virtualViewport.Height / 2f);
+            ScaleMatrix = Matrix.CreateScale((float)virtualViewport.Width / VirtualWidth);
         }
 
         private static void ApplyChanges()
