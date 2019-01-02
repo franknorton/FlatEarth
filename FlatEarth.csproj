@@ -97,10 +97,20 @@
     <Compile Include="Rendering\RenderLayerYSorted.cs" />
     <Compile Include="Rendering\RenderObject.cs" />
     <Compile Include="Resolution.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\ScreenSwitcher.cs" />
+    <Compile Include="Screens\ScreenTransition.cs" />
+    <Compile Include="Screens\Transitions\TransitionCrossFade.cs" />
+    <Compile Include="Screens\Transitions\TransitionFade.cs" />
+    <Compile Include="Screens\Transitions\TransitionGrow.cs" />
+    <Compile Include="Screens\Transitions\TransitionPush.cs" />
+    <Compile Include="Screens\Transitions\TransitionSlide.cs" />
     <Compile Include="Tiles\AutoTileParser.cs" />
     <Compile Include="Tiles\Tile.cs" />
     <Compile Include="Tiles\TileSet.cs" />
     <Compile Include="Utilities\BitOperations.cs" />
+    <Compile Include="Utilities\CompassDirection.cs" />
+    <Compile Include="Utilities\Direction.cs" />
     <Compile Include="Utilities\Json.cs" />
     <Compile Include="Utilities\TextureRecompiler.cs" />
     <Compile Include="Window.cs" />
@@ -110,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
+    <Folder Include="GUI\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

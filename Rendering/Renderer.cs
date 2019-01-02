@@ -142,5 +142,19 @@ namespace FlatEarth
         {
 
         }
+
+        public static void RenderToFull(RenderTarget2D renderTarget, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(renderTarget, Vector2.Zero, Color.White);
+            spriteBatch.End();
+        }
+
+        public static void RenderToVirtual(RenderTarget2D renderTarget, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, Resolution.ScaleMatrix);
+            spriteBatch.Draw(renderTarget, Vector2.Zero, Color.White);
+            spriteBatch.End();
+        }
     }
 }
