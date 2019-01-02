@@ -37,19 +37,25 @@ namespace FlatEarth
 
         protected override void Initialize()
         {
+
+            Content = new ContentManager(this.Services, "Content");
             base.Initialize();
+            DefaultResourceContent = new ResourceContentManager(Services, DefaultResources.ResourceManager);
+            Defaults.Initialize();
+
             Input.Input.Initialize();
             DebugDraw.Initialize(Graphics.GraphicsDevice);
             FlatEarth.Window.Initialize(Window);
             Resolution.Set(1280, 1024, false);
             Resolution.SetVirtual(800, 800);
             Renderer = new Renderer();
-            DefaultResourceContent = new ResourceContentManager(Services, DefaultResources.ResourceManager);
-            Defaults.Initialize();
+            
+            
         }
 
         protected override void Update(GameTime gameTime)
         {
+            Input.Input.Update(gameTime);
             GameTime = gameTime;
             RawDeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             DeltaTime = RawDeltaTime * TimeRate;

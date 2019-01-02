@@ -63,6 +63,14 @@ namespace FlatEarth
             SamplerState = SamplerState.LinearClamp;
             Effect = new BasicEffect(Graphics.GraphicsDevice);
             Camera = new Camera();
+            Lighting = new LightRoom(Graphics.GraphicsDevice);
+            Lighting.Enabled = false;
+            OnResolutionChange();
+            Resolution.OnResolutionChange += OnResolutionChange;
+        }
+
+        public void OnResolutionChange()
+        {
             layerRenderTarget = new RenderTarget2D(Graphics.GraphicsDevice, Resolution.VirtualWidth, Resolution.VirtualHeight);
         }
 
@@ -108,15 +116,18 @@ namespace FlatEarth
             BeforeRender();
 
             //Background goes here.
-
-            spriteBatch.GraphicsDevice.SetRenderTarget(null);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState, SamplerState, null, null, Effect, Camera.Matrix);
+            
+            spriteBatch.GraphicsDevice.SetRenderTarget(layerRenderTarget);                
+            spriteBatch.GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState, SamplerState, null, null, null, null);
             renderLayers.Render(spriteBatch);
             ParticleEngine.Render(spriteBatch);
             spriteBatch.End();
 
             Lighting.Render();
 
+            spriteBatch.GraphicsDevice.SetRenderTarget(null);
+            Resolution.SwitchToVirtualViewport();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState, null, null, null, Resolution.ScaleMatrix);
             Lighting.Apply();
             spriteBatch.Draw(layerRenderTarget, Vector2.Zero, Color.White);

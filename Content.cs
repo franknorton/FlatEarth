@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using FlatEarth.Rendering;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,35 @@ namespace FlatEarth
         public static T Load<T>(string fileName)
         {
             return Engine.Instance.Content.Load<T>(fileName);
+        }
+
+        internal static class DefaultResource
+        {
+            public static FETexture LoadFETexture(string textureName)
+            {
+                var texture = Load<Texture2D>(textureName);
+                return new FETexture(texture);
+            }
+
+            public static Effect LoadEffect(string effectName)
+            {
+                return Load<Effect>(effectName);
+            }
+
+            public static SpriteFont LoadFont(string fontName)
+            {
+                return Load<SpriteFont>(fontName);
+            }
+
+            public static Texture2D LoadTexture(string textureName)
+            {
+                return Load<Texture2D>(textureName);
+            }
+
+            public static T Load<T>(string fileName)
+            {
+                return Engine.Instance.DefaultResourceContent.Load<T>(fileName);
+            }
         }
     }
 }

@@ -11,7 +11,6 @@ namespace FlatEarth
     public static class Defaults
     {
         public static Texture2D PixelTexture { get; private set; }
-
         public static FETexture FEPixelTexture { get; private set; }
         public static SpriteFont Font { get; private set; }
 

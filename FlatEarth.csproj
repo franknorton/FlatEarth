@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="ActorSystem.cs" />
+    <Compile Include="Animating\Animation.cs" />
+    <Compile Include="Animating\AnimationSet.cs" />
     <Compile Include="Calculate.cs" />
     <Compile Include="Collision\CircleCollider.cs" />
     <Compile Include="Collision\CohenSutherland.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Input\SimpleGamepad.cs" />
     <Compile Include="Input\SimpleKeyboard.cs" />
     <Compile Include="Input\SimpleMouse.cs" />
+    <Compile Include="Lighting\Light.cs" />
     <Compile Include="Lighting\LightRoom.cs" />
     <Compile Include="Particles\Particle.cs" />
     <Compile Include="Particles\ParticleEngine.cs" />
@@ -112,6 +115,8 @@
     <None Include="packages.config" />
     <None Include="ReadMe.md" />
     <None Include="Resources\defaultFont.xnb" />
+    <None Include="Resources\LightEffect.xnb" />
+    <None Include="Resources\LightMaskDefault.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
