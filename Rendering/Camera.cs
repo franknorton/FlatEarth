@@ -35,6 +35,12 @@ namespace FlatEarth
             UpdateMatrices();
         }
 
+        public void ResetViewport(int width, int height)
+        {
+            Viewport.Width = width;
+            Viewport.Height = height;
+        }
+
         public override string ToString()
         {
             return "Camera:\n\tViewport: { " + Viewport.X + ", " + Viewport.Y + ", " + Viewport.Width + ", " + Viewport.Height +

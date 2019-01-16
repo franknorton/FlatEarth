@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FlatEarth.Rendering2;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace FlatEarth.Screens
         public abstract void Initialize();
         public abstract void Destroy();
         public abstract void Update(GameTime gameTime);
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public abstract RenderTarget2D Draw(SpriteBatch spriteBatch);
     }
 }

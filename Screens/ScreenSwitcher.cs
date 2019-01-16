@@ -1,4 +1,5 @@
-﻿using FlatEarth.Screens.Transitions;
+﻿using FlatEarth.Rendering2;
+using FlatEarth.Screens.Transitions;
 using FlatEarth.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,48 +21,59 @@ namespace FlatEarth.Screens
 
         public ScreenSwitcher()
         {
+            currentScreenRenderTarget = new RenderTarget2D(Engine.Graphics.GraphicsDevice, Resolution.VirtualWidth, Resolution.VirtualHeight);
+            nextScreenRenderTarget = new RenderTarget2D(Engine.Graphics.GraphicsDevice, Resolution.VirtualWidth, Resolution.VirtualHeight);
+
             Renderer.GraphicsDeviceCreated += Renderer_GraphicsDeviceCreated;
         }
 
         private void Renderer_GraphicsDeviceCreated(object sender, EventArgs e)
         {
-
+            currentScreenRenderTarget = new RenderTarget2D(Engine.Graphics.GraphicsDevice, Resolution.VirtualWidth, Resolution.VirtualHeight);
+            nextScreenRenderTarget = new RenderTarget2D(Engine.Graphics.GraphicsDevice, Resolution.VirtualWidth, Resolution.VirtualHeight);
         }
 
         public void SetScreen(Screen screen)
         {
             currentScreen?.Destroy();
+            screen.Initialize();
             currentScreen = screen;
         }
 
         #region Transitions
         public void ChangeScreenTransition(Screen screen, ScreenTransition transition)
         {
+            screen.Initialize();
             transitionToScreen = screen;
             this.transition = transition;
         }
         public void ChangeScreenFade(Screen screen, int lengthInMilliseconds, Color fadeToColor)
         {
+            screen.Initialize();
             transitionToScreen = screen;
             transition = new TransitionFade(lengthInMilliseconds, fadeToColor);
         }
         public void ChangeScreenSlide(Screen screen, int lengthInMilliseconds, Direction slideDirection)
         {
+            screen.Initialize();
             transitionToScreen = screen;
             transition = new TransitionSlide(lengthInMilliseconds, slideDirection);
         }
         public void ChangeScreenPush(Screen screen, int lengthInMilliseconds, Direction pushDirection)
         {
+            screen.Initialize();
             transitionToScreen = screen;
             transition = new TransitionPush(lengthInMilliseconds, pushDirection);
         }
         public void ChangeScreenGrow(Screen screen, int lengthInMilliseconds)
         {
+            screen.Initialize();
             transitionToScreen = screen;
             transition = new TransitionGrow(lengthInMilliseconds);
         }
         public void ChangeScreenCrossFade(Screen screen, int lengthInMilliseconds)
         {
+            screen.Initialize();
             transitionToScreen = screen;
             transition = new TransitionCrossFade(lengthInMilliseconds);
         }
@@ -90,7 +102,7 @@ namespace FlatEarth.Screens
         public void Draw(SpriteBatch spriteBatch)
         {
             if (transition == null)
-                currentScreen?.Draw(spriteBatch);
+                currentScreen?.Draw(spriteBatch).RenderToForeground(spriteBatch);
             else
                 DrawTransition(spriteBatch);
                   
@@ -98,7 +110,9 @@ namespace FlatEarth.Screens
 
         protected void DrawTransition(SpriteBatch spriteBatch)
         {
-            
+            var currentTarget = currentScreen.Draw(spriteBatch);
+            var nextTarget = transitionToScreen.Draw(spriteBatch);
+            transition.Draw(Engine.Graphics.GraphicsDevice, spriteBatch, currentTarget, nextTarget);
         }
     }
 }

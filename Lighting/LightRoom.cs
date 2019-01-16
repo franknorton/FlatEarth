@@ -33,17 +33,29 @@ namespace FlatEarth.Lighting
             lightRenderTarget = new RenderTarget2D(Renderer.Graphics.GraphicsDevice, Resolution.VirtualWidth, Resolution.VirtualHeight);
         }
 
-        public void Render()
+        public void AddLight(Light light)
         {
-            if (!Enabled)
-                return;
+            lights.Add(light);
+        }
+        public void AddLight(Color color, Vector2 position, int width, int height)
+        {
+            lights.Add(new Light(color, position, width, height));
+        }
 
+        public void Clear()
+        {
+            lights.Clear();
+        }
+
+        public RenderTarget2D Render()
+        {
             Renderer.Graphics.GraphicsDevice.SetRenderTarget(lightRenderTarget);
             Renderer.Graphics.GraphicsDevice.Clear(AmbientColor);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, samplerState, null, null, null, Engine.Renderer.Camera.Matrix);
             lights.ForEach(light => light.Render(spriteBatch));
             spriteBatch.End();
             Renderer.Graphics.GraphicsDevice.SetRenderTarget(null);
+            return lightRenderTarget;
         }
 
         public void Apply()
