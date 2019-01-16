@@ -17,7 +17,7 @@ namespace FlatEarth.Screens.Transitions
             Direction = direction;
         }
 
-        public override void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, RenderTarget2D current, RenderTarget2D next)
+        public override void Draw(RenderTarget2D target, SpriteBatch spriteBatch, RenderTarget2D current, RenderTarget2D next)
         {
             Vector2 nextOffset = Vector2.Zero;
 
@@ -37,6 +37,7 @@ namespace FlatEarth.Screens.Transitions
                     break;
             }
 
+            spriteBatch.SetRenderTargetAndClear(target, Color.Black);
             spriteBatch.Begin();
             spriteBatch.Draw(current, Vector2.Zero, Color.White);
             spriteBatch.Draw(next, nextOffset, Color.White);

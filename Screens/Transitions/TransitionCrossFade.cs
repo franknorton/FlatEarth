@@ -10,8 +10,9 @@ namespace FlatEarth.Screens.Transitions
 
         }
 
-        public override void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, RenderTarget2D currentScreen, RenderTarget2D newScreen)
+        public override void Draw(RenderTarget2D target, SpriteBatch spriteBatch, RenderTarget2D currentScreen, RenderTarget2D newScreen)
         {
+            spriteBatch.SetRenderTargetAndClear(target, Color.Black);
             spriteBatch.Begin();
             spriteBatch.Draw(currentScreen, Vector2.Zero, Color.White * (1 - PercentDone));
             spriteBatch.Draw(newScreen, Vector2.Zero, Color.White * PercentDone);

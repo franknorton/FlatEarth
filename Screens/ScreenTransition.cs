@@ -26,6 +26,6 @@ namespace FlatEarth.Screens
             milliseconds += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
-        public abstract void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, RenderTarget2D currentScreen, RenderTarget2D nextScreen);
+        public abstract void Draw(RenderTarget2D transitionTarget, SpriteBatch spriteBatch, RenderTarget2D currentScreen, RenderTarget2D nextScreen);
     }
 }

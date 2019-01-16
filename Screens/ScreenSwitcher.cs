@@ -18,6 +18,7 @@ namespace FlatEarth.Screens
         protected ScreenTransition transition;
         protected RenderTarget2D currentScreenRenderTarget;
         protected RenderTarget2D nextScreenRenderTarget;
+        protected RenderTarget2D transitionRenderTarget;
 
         public ScreenSwitcher()
         {
@@ -101,6 +102,7 @@ namespace FlatEarth.Screens
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Resolution.SwitchToVirtualViewport();
             if (transition == null)
                 currentScreen?.Draw(spriteBatch).RenderToForeground(spriteBatch);
             else
@@ -112,7 +114,8 @@ namespace FlatEarth.Screens
         {
             var currentTarget = currentScreen.Draw(spriteBatch);
             var nextTarget = transitionToScreen.Draw(spriteBatch);
-            transition.Draw(Engine.Graphics.GraphicsDevice, spriteBatch, currentTarget, nextTarget);
+            transition.Draw(transitionRenderTarget, spriteBatch, currentTarget, nextTarget);
+            transitionRenderTarget.RenderToForeground(spriteBatch);
         }
     }
 }
