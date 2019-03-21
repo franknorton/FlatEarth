@@ -9,11 +9,11 @@ namespace FlatEarth
 {
     public class Resolution
     {
-        public static int VirtualWidth { get; private set; }
-        public static int VirtualHeight { get; private set; }
-        public static int Width { get; private set; }
-        public static int Height { get; private set; }
-        public static bool Fullscreen { get; private set; }
+        public static int VirtualWidth { get; private set; } = 800;
+        public static int VirtualHeight { get; private set; } = 600;
+        public static int Width { get; private set; } = 800;
+        public static int Height { get; private set; } = 600;
+        public static bool Fullscreen { get; private set; } = false;
         public static Matrix ScaleMatrix { get; private set; }
 
         private static Viewport virtualViewport;
@@ -24,16 +24,24 @@ namespace FlatEarth
 
         static Resolution()
         {
-            virtualViewport = new Viewport(0, 0, 0, 0, 0, 1);
-            fullViewport = new Viewport(0, 0, 0, 0, 0, 1);
+            virtualViewport = new Viewport(0, 0, VirtualWidth, VirtualHeight, 0, 1);
+            fullViewport = new Viewport(0, 0, Width, Height, 0, 1);
+
+            Window.OnWindowSizeChanged += Window_OnWindowSizeChanged;
         }
-        
+
+        private static void Window_OnWindowSizeChanged(object sender, WindowSizeChangeEventArgs e)
+        {
+            //Reset size based on actual resolution, virtual stays the same. 
+            Set(Window.Width, Window.Height, false);
+        }
+
         public static void Set(int width, int height, bool fullscreen)
         {
             Width = width;
             Height = height;
             Fullscreen = fullscreen;
-            UpdateViewport();
+            UpdateViewports();
             ApplyChanges();
         }
         public static void SetVirtual(int virtualWidth, int virtualHeight)
@@ -50,6 +58,12 @@ namespace FlatEarth
         public static void SwitchToFullViewport()
         {
             Engine.Graphics.GraphicsDevice.Viewport = fullViewport;
+        }
+
+        private static void UpdateViewports()
+        {
+            UpdateViewport();
+            UpdateVirtualViewport();
         }
 
         private static void UpdateViewport()

@@ -19,6 +19,7 @@ namespace FlatEarth.Rendering
         public FETexture(Texture2D source)
         {
             this.Source = source;
+            this.SourceRect = source.Bounds;
         }
         public FETexture(Texture2D source, Rectangle sourceRectangle)
         {

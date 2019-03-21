@@ -102,12 +102,17 @@ namespace FlatEarth.Screens
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Resolution.SwitchToVirtualViewport();
+            
             if (transition == null)
-                currentScreen?.Draw(spriteBatch).RenderToForeground(spriteBatch);
+            {
+                var renderTarget = currentScreen?.Draw(spriteBatch);
+                Engine.Graphics.GraphicsDevice.Clear(Color.White);
+                Resolution.SwitchToVirtualViewport();
+                renderTarget.RenderToForeground(spriteBatch);
+                Resolution.SwitchToFullViewport();
+            }
             else
-                DrawTransition(spriteBatch);
-                  
+                DrawTransition(spriteBatch);             
         }
 
         protected void DrawTransition(SpriteBatch spriteBatch)

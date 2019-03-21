@@ -39,8 +39,9 @@ namespace FlatEarth
         {
 
             Content = new ContentManager(this.Services, "Content");
-            base.Initialize();
             DefaultResourceContent = new ResourceContentManager(Services, DefaultResources.ResourceManager);
+            base.Initialize();
+            
             Defaults.Initialize();
 
             Input.Input.Initialize();
@@ -62,6 +63,5 @@ namespace FlatEarth
 
             base.Update(gameTime);
         }
-
     }
 }

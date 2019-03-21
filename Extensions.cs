@@ -29,7 +29,7 @@ namespace FlatEarth
             sb.Draw(target, Vector2.Zero, Color.White);
             sb.End();
         }
-        #region
+        #endregion
 
 
         #region SpriteBatch
@@ -38,6 +38,11 @@ namespace FlatEarth
             sb.GraphicsDevice.SetRenderTarget(target);
             sb.GraphicsDevice.Clear(clearColor);
         }
-        #region
+
+        public static void SetRenderTarget(this SpriteBatch sb, RenderTarget2D target)
+        {
+            sb.GraphicsDevice.SetRenderTarget(target);
+        }
+        #endregion
     }
 }

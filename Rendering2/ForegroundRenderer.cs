@@ -9,7 +9,7 @@ namespace FlatEarth.Rendering2
 {
     public class ForegroundRenderer : Renderer
     {
-        public ForegroundRenderer() : base(Resolution.VirtualWidth, Resolution.VirtualHeight)
+        public ForegroundRenderer(params string[] layersBackToFront) : base(Resolution.VirtualWidth, Resolution.VirtualHeight, layersBackToFront)
         {
             Resolution.OnResolutionChange += Resolution_OnResolutionChange;
         }

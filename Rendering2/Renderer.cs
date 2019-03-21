@@ -30,6 +30,7 @@ namespace FlatEarth.Rendering2
             spriteBatch = new SpriteBatch(Engine.Graphics.GraphicsDevice);
             renderLayers = new Dictionary<string, List<RenderObject>>();
             Camera = new Camera(viewWidth, viewHeight);
+            lightRoom = new LightRoom(Engine.Graphics.GraphicsDevice);
 
             foreach (var layerName in layersBackToFront)
                 renderLayers.Add(layerName, new List<RenderObject>());
@@ -98,7 +99,7 @@ namespace FlatEarth.Rendering2
             spriteBatch.Draw(layerTarget, Vector2.Zero, Color.White);
             spriteBatch.End();
 
-            spriteBatch.SetRenderTargetAndClear(null, ClearColor);
+            spriteBatch.SetRenderTarget(null);
 
             return finalTarget;
         }
