@@ -16,6 +16,7 @@ namespace FlatEarth.Rendering2
         private RenderTarget2D lightTarget;
         private RenderTarget2D finalTarget;
         private SpriteBatch spriteBatch;
+        private Pool<RenderObject> renderObjectPool;
         private Dictionary<string, List<RenderObject>> renderLayers;
         private LightRoom lightRoom;
 
@@ -28,6 +29,7 @@ namespace FlatEarth.Rendering2
             lightTarget = new RenderTarget2D(Engine.Graphics.GraphicsDevice, viewWidth, viewHeight);
             finalTarget = new RenderTarget2D(Engine.Graphics.GraphicsDevice, viewWidth, viewHeight);
             spriteBatch = new SpriteBatch(Engine.Graphics.GraphicsDevice);
+            renderObjectPool = new Pool<RenderObject>(1000, 150);
             renderLayers = new Dictionary<string, List<RenderObject>>();
             Camera = new Camera(viewWidth, viewHeight);
             lightRoom = new LightRoom(Engine.Graphics.GraphicsDevice);
@@ -48,14 +50,14 @@ namespace FlatEarth.Rendering2
         {
             if (renderLayers.TryGetValue(layerName, out var layer))
             {
-                layer.Add(new RenderObject()
-                {
-                    Texture = texture,
-                    Destination = destination,
-                    Origin = origin,
-                    Rotation = rotation,
-                    Color = color
-                });
+                var pooledObject = renderObjectPool.Get();
+                pooledObject.Texture = texture;
+                pooledObject.Destination = destination;
+                pooledObject.Origin = origin;
+                pooledObject.Rotation = rotation;
+                pooledObject.Color = color;
+
+                layer.Add(pooledObject);
             }
             else
                 throw new ArgumentException($"No layer exists with name '{layerName}'.");
@@ -72,6 +74,14 @@ namespace FlatEarth.Rendering2
 
         public void Clear()
         {
+            foreach(var layer in renderLayers.Values)
+            {
+                foreach(var renderObject in layer)
+                {
+                    renderObjectPool.Put(renderObject);
+                }
+            }
+
             foreach (var layer in renderLayers.Values)
                 layer.Clear();
 
@@ -100,7 +110,8 @@ namespace FlatEarth.Rendering2
             spriteBatch.End();
 
             spriteBatch.SetRenderTarget(null);
-
+            
+            Clear();
             return finalTarget;
         }
 
