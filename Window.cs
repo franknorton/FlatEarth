@@ -23,8 +23,6 @@ namespace FlatEarth
         public static int Y { get => window.Position.Y; }
         public static Point Center { get => window.ClientBounds.Center; }
         public static bool AllowUserResizing { get => window.AllowUserResizing; set => window.AllowUserResizing = value; }
-        
-
 
         public static void Initialize(GameWindow window)
         {

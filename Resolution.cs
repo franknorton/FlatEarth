@@ -38,6 +38,9 @@ namespace FlatEarth
 
         public static void Set(int width, int height, bool fullscreen)
         {
+            if (width == Width && height == Height && fullscreen == Fullscreen)
+                return;
+
             Width = width;
             Height = height;
             Fullscreen = fullscreen;
@@ -46,6 +49,9 @@ namespace FlatEarth
         }
         public static void SetVirtual(int virtualWidth, int virtualHeight)
         {
+            if (virtualWidth == VirtualWidth && virtualHeight == VirtualHeight)
+                return;
+
             VirtualWidth = virtualWidth;
             VirtualHeight = virtualHeight;
             UpdateVirtualViewport();

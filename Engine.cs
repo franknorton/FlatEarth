@@ -33,6 +33,7 @@ namespace FlatEarth
         {
             Instance = this;
             Graphics = new GraphicsDeviceManager(this);
+            Graphics.HardwareModeSwitch = false;
         }
 
         protected override void Initialize()
