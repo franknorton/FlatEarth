@@ -2,7 +2,7 @@
 FlatEarth aims to be a lightweight, but thorough framework that makes creating 2D games in Monogame fast and easy. It is loosely based off of the Monocle Engine.
 
 ## Features
-FlatEarth's featureset is slim but expanding. It currently provides a nice layer over Monogame to greatly ease development in key areas while maintaining a hands-off approach to how you structure your game. Use the entity component system or role your own; FlatEarth doesn't dictate how you work.
+FlatEarth's feature-set is slim but expanding. It currently provides a nice layer over Monogame to greatly ease development in key areas while maintaining a hands-off approach to how you structure your game. Use the entity component system or roll your own; FlatEarth doesn't dictate how you work.
 
 ### Complete
 
@@ -12,7 +12,7 @@ FlatEarth's featureset is slim but expanding. It currently provides a nice layer
 * Layered Rendering
 * Entity Component System
   
-### Todo
+### Todo / Incomplete
 
 * Lighting
 * Shadows
