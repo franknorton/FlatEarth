@@ -51,13 +51,14 @@
     <Compile Include="Animating\Animation.cs" />
     <Compile Include="Animating\AnimationSet.cs" />
     <Compile Include="Calculate.cs" />
-    <Compile Include="Collision\CircleCollider.cs" />
+    <Compile Include="Collision\Colliders\CircleCollider.cs" />
     <Compile Include="Collision\CohenSutherland.cs" />
     <Compile Include="Collision\Collide.cs" />
-    <Compile Include="Collision\Collider.cs" />
-    <Compile Include="Collision\ColliderList.cs" />
-    <Compile Include="Collision\GridCollider.cs" />
-    <Compile Include="Collision\RectCollider.cs" />
+    <Compile Include="Collision\Colliders\Collider.cs" />
+    <Compile Include="Collision\Colliders\ColliderList.cs" />
+    <Compile Include="Collision\CollisionChecking.cs" />
+    <Compile Include="Collision\Colliders\GridCollider.cs" />
+    <Compile Include="Collision\Colliders\RectCollider.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="DataStructures\InfiniteGrid.cs" />
     <Compile Include="DataStructures\Pool.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="ECS\Component.cs" />
     <Compile Include="ECS\Components\ActorComponent.cs" />
     <Compile Include="ECS\Components\SpriteComponent.cs" />
+    <Compile Include="ECS\Components\TileMapRendererComponent.cs" />
     <Compile Include="ECS\Entity.cs" />
     <Compile Include="ECS\Scene.cs" />
     <Compile Include="Engine.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Screens\Transitions\TransitionSlide.cs" />
     <Compile Include="Tiles\AutoTileParser.cs" />
     <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="Tiles\TileMap.cs" />
     <Compile Include="Tiles\TileSet.cs" />
     <Compile Include="Utilities\BitOperations.cs" />
     <Compile Include="Utilities\CompassDirection.cs" />
