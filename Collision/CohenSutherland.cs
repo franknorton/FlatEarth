@@ -52,7 +52,7 @@ namespace FlatEarth.Collision
                 fromY = rectY;
                 toX = rectX + width;
                 toY = rectY;
-                return Collide.LineToLine(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
+                return CollisionChecking.Lines(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
             }
             else if((combinedSector & Sector.BOTTOM) != 0)
             {
@@ -60,7 +60,7 @@ namespace FlatEarth.Collision
                 fromY = rectY + height;
                 toX = rectX + width;
                 toY = rectY + height;
-                return Collide.LineToLine(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
+                return CollisionChecking.Lines(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
             }
             else if((combinedSector & Sector.LEFT) != 0)
             {
@@ -68,7 +68,7 @@ namespace FlatEarth.Collision
                 fromY = rectY;
                 toX = rectX;
                 toY = rectY + height;
-                return Collide.LineToLine(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
+                return CollisionChecking.Lines(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
             }
             else if((combinedSector & Sector.RIGHT) != 0)
             {
@@ -76,7 +76,7 @@ namespace FlatEarth.Collision
                 fromY = rectY;
                 toX = rectX + width;
                 toY = rectY + height;
-                return Collide.LineToLine(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
+                return CollisionChecking.Lines(fromX, fromY, toX, toY, lineStartX, lineStartY, lineEndX, lineEndY);
             }
 
             return false;

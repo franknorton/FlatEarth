@@ -59,7 +59,9 @@
     <Compile Include="Collision\GridCollider.cs" />
     <Compile Include="Collision\RectCollider.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="DataStructures\Circle.cs" />
     <Compile Include="DataStructures\InfiniteGrid.cs" />
+    <Compile Include="DataStructures\Line.cs" />
     <Compile Include="DataStructures\Pool.cs" />
     <Compile Include="DefaultResources.Designer.cs" />
     <Compile Include="Defaults.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Tiles\TileSet.cs" />
     <Compile Include="Utilities\BitOperations.cs" />
     <Compile Include="Utilities\Json.cs" />
+    <Compile Include="Utilities\MathF.cs" />
     <Compile Include="Utilities\TextureRecompiler.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
