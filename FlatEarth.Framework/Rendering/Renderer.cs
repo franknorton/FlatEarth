@@ -25,6 +25,7 @@ namespace FlatEarth
 
 
         private RenderTarget2D layerRenderTarget;
+        private RenderTarget2D finalRenderTarget;
         private RenderLayerList renderLayers;
         private SpriteBatch spriteBatch;
 
@@ -138,9 +139,44 @@ namespace FlatEarth
             AfterRender();
         }
 
+        public virtual RenderTarget2D RenderToTarget()
+        {
+            spriteBatch.GraphicsDevice.SetRenderTarget(layerRenderTarget);
+            spriteBatch.GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState, SamplerState, null, null, null, null);
+            renderLayers.Render(spriteBatch);
+            ParticleEngine.Render(spriteBatch);
+            spriteBatch.End();
+
+            Lighting.Render();
+
+            spriteBatch.GraphicsDevice.SetRenderTarget(finalRenderTarget);
+            Resolution.SwitchToVirtualViewport();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState, null, null, null, null);
+            Lighting.Apply();
+            spriteBatch.Draw(layerRenderTarget, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
+            return finalRenderTarget;
+        }
+
         protected virtual void AfterRender()
         {
 
+        }
+
+        public static void RenderToFull(RenderTarget2D renderTarget, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(renderTarget, Vector2.Zero, Color.White);
+            spriteBatch.End();
+        }
+
+        public static void RenderToVirtual(RenderTarget2D renderTarget, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, Resolution.ScaleMatrix);
+            spriteBatch.Draw(renderTarget, Vector2.Zero, Color.White);
+            spriteBatch.End();
         }
     }
 }
