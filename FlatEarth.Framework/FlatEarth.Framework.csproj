@@ -135,7 +135,6 @@
     <Compile Include="ViewSystem\FixedAspectView.cs" />
     <Compile Include="ViewSystem\IView.cs" />
     <Compile Include="ViewSystem\View.cs" />
-    <Compile Include="ViewSystem\ViewLayoutService.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>
