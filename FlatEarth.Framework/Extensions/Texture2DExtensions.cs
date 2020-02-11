@@ -3,14 +3,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace FlatEarth
+namespace FlatEarth.Extensions
 {
-    public static class Extensions
+    public static class Texture2DExtensions
     {
-
-        #region Texture2D
         public static FETexture ToFETexture(this Texture2D texture)
         {
             return new FETexture(texture);
@@ -29,21 +29,5 @@ namespace FlatEarth
             sb.Draw(target, Vector2.Zero, Color.White);
             sb.End();
         }
-        #endregion
-
-
-        #region SpriteBatch
-        public static void SetRenderTargetAndClear(this SpriteBatch sb, RenderTarget2D target, Color clearColor)
-        {
-            sb.GraphicsDevice.SetRenderTarget(target);
-            sb.GraphicsDevice.Clear(clearColor);
-        }
-
-        public static void SetRenderTarget(this SpriteBatch sb, RenderTarget2D target)
-        {
-            sb.GraphicsDevice.SetRenderTarget(target);
-        }
-        #endregion
-
     }
 }

@@ -60,6 +60,8 @@
     <Compile Include="Collision\Colliders\RectCollider.cs" />
     <Compile Include="Collision\CollisionChecking.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="DataStructures\Percentage.cs" />
+    <Compile Include="DataStructures\RectangluarArea.cs" />
     <Compile Include="DataStructures\Circle.cs" />
     <Compile Include="DataStructures\InfiniteGrid.cs" />
     <Compile Include="DataStructures\Line.cs" />
@@ -74,7 +76,9 @@
     <Compile Include="ECS\Entity.cs" />
     <Compile Include="ECS\Scene.cs" />
     <Compile Include="Engine.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\AnchorExtensions.cs" />
+    <Compile Include="Extensions\SpriteBatchExtensions.cs" />
+    <Compile Include="Extensions\Texture2DExtensions.cs" />
     <Compile Include="Input\ControlCode.cs" />
     <Compile Include="Input\ControlCodeParser.cs" />
     <Compile Include="Input\Input.cs" />
@@ -119,12 +123,19 @@
     <Compile Include="Tiles\Tile.cs" />
     <Compile Include="Tiles\TileMap.cs" />
     <Compile Include="Tiles\TileSet.cs" />
+    <Compile Include="Utilities\Anchors.cs" />
+    <Compile Include="Utilities\AspectRatio.cs" />
     <Compile Include="Utilities\BitOperations.cs" />
     <Compile Include="Utilities\CompassDirection.cs" />
     <Compile Include="Utilities\Direction.cs" />
     <Compile Include="Utilities\Json.cs" />
     <Compile Include="Utilities\MathF.cs" />
     <Compile Include="Utilities\TextureRecompiler.cs" />
+    <Compile Include="ViewSystem\DynamicAspectView.cs" />
+    <Compile Include="ViewSystem\FixedAspectView.cs" />
+    <Compile Include="ViewSystem\IView.cs" />
+    <Compile Include="ViewSystem\View.cs" />
+    <Compile Include="ViewSystem\ViewLayoutService.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>

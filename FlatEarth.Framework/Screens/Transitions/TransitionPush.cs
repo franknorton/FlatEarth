@@ -1,4 +1,5 @@
-﻿using FlatEarth.Utilities;
+﻿using FlatEarth.Extensions;
+using FlatEarth.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

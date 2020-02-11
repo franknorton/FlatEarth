@@ -1,4 +1,5 @@
-﻿using FlatEarth.Lighting;
+﻿using FlatEarth.Extensions;
+using FlatEarth.Lighting;
 using FlatEarth.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

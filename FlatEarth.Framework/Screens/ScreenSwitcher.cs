@@ -1,4 +1,5 @@
-﻿using FlatEarth.Rendering2;
+﻿using FlatEarth.Extensions;
+using FlatEarth.Rendering2;
 using FlatEarth.Screens.Transitions;
 using FlatEarth.Utilities;
 using Microsoft.Xna.Framework;

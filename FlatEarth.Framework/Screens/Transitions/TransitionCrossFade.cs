@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FlatEarth.Extensions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace FlatEarth.Screens.Transitions
