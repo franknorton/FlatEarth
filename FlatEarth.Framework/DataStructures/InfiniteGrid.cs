@@ -13,6 +13,7 @@ namespace FlatEarth
             Cells = new Dictionary<Point, T>();
         }
 
+        public void Set(int x, int y, T obj) { Set(new Point(x, y), obj); }
         public void Set(Point cell, T obj)
         {
             if (Cells.ContainsKey(cell))
@@ -20,7 +21,8 @@ namespace FlatEarth
             else
                 Cells.Add(cell, obj);
         }
-        public void Set(int x, int y, T obj) { Set(new Point(x, y), obj); }
+        
+        public T Get(int x, int y) { return Get(new Point(x, y)); }
         public T Get(Point cell)
         {
             if (Cells.TryGetValue(cell, out var val))

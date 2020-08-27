@@ -1,4 +1,5 @@
 ﻿using FlatEarth.Collision;
+using FlatEarth.Collision.Colliders;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,6 @@ namespace FlatEarth.ECS
             get => collider; set
             {
                 collider = value;
-                collider.Entity = this;
             }
         }
         public Scene Scene;
@@ -76,14 +76,12 @@ namespace FlatEarth.ECS
         public virtual void DebugRender()
         {
             DebugDraw.Circle(Position, 1, Color.Black);
-            collider?.DebugRender();
             components.ForEach(c => c.DebugRender());
 
         }
         public virtual void Destroy()
         {
             destroy = true;
-            Collider.Active = false;
 
         }
 
@@ -139,11 +137,6 @@ namespace FlatEarth.ECS
             return components.Where(c => c is T).Select(c => c as T);
         }
         #endregion
-
-        public bool CollidesWithAny(out List<Entity> entity)
-        {
-            return Scene.CollisionCheck(this, out entity);
-        }
 
     }
 }

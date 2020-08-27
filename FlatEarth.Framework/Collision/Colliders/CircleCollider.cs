@@ -5,38 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlatEarth.Collision
+namespace FlatEarth.Collision.Colliders
 {
     public class CircleCollider : Collider
     {
         private float radius;
-        public float Radius { get => radius; set => radius = value; }
 
-        public CircleCollider(float radius, float x = 0, float y = 0)
+        public float Radius { get => radius; set => radius = value; }
+        public float Left => Position.X - Radius;
+        public float Right => Position.X + Radius;
+        public float Top => Position.Y - Radius;
+        public float Bottom => Position.Y + Radius;
+
+        public CircleCollider(float radius, float x, float y, bool isTrigger = false) : base(x, y, false)
         {
             Radius = radius;
-            Position.X = x;
-            Position.Y = y;
-        }
-
-        public override bool Collide(CircleCollider circle)
-        {
-            return Collision.Collide.CircleToCircle(this, circle);
-        }
-
-        public override bool Collide(RectCollider rect)
-        {
-            return Collision.Collide.CircleToRectangle(this, rect);
-        }
-
-        public override bool Collide(GridCollider grid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void DebugRender()
-        {
-            DebugDraw.Circle(AbsolutePosition, Radius, Color.White);
         }
     }
 }
+  

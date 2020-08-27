@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlatEarth.Collision
+namespace FlatEarth.Collision.Colliders
 {
     /// <summary>
     /// An infinite grid of collidable cells.
@@ -37,6 +37,7 @@ namespace FlatEarth.Collision
         public void Clear() {
 
         }
+
         //Rectangle
         public bool Collide(float left, float top, float right, float bottom) {
             //Need to check every tile that this rect contains for collisions.
@@ -57,21 +58,16 @@ namespace FlatEarth.Collision
             return false;
         }
         public bool Collide(Rectangle rect) { return Collide(rect.Left, rect.Top, rect.Right, rect.Bottom); }
-        public override bool Collide(RectCollider rect) { return Collide(rect.AbsolutePosition.X, rect.AbsolutePosition.Y, rect.AbsolutePosition.X + rect.Width, rect.AbsolutePosition.Y + rect.Height); }
 
-        public override bool Collide(CircleCollider circle) {
-            return false;
-        }
-        public override bool Collide(GridCollider grid) //This seems crazy. Why would you need to check two grids against each other?
+        public bool this[int x, int y]
         {
-            throw new NotImplementedException();
-        }
-
-        public override void DebugRender()
-        {
-            foreach(var cell in grid.Cells)
+            get
             {
-                DebugDraw.Rectangle(new Vector2(cell.Key.X * CellWidth, cell.Key.Y * CellHeight), CellWidth, CellHeight, Color.White, true);
+                return grid[x, y];
+            }
+            set
+            {
+                grid[x, y] = value;
             }
         }
     }

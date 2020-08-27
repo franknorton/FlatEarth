@@ -1,0 +1,119 @@
+<Project>
+  <Name>FlatEarth</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Framework</Name>
+    <Language>CSharp</Language>
+    <Entities />
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Engine</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>feEngine</Name>
+        <Access>Public</Access>
+        <Location left="260" top="368" />
+        <Size width="344" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public feWindow Window { get; }</Member>
+        <Member type="Event">public event EventHandler OnUpdate</Member>
+        <Member type="Event">public event EventHandler OnRender</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public void SetSplashScene(feScene scene)</Member>
+        <Member type="Method">public void SetStartScene(feScene scene)</Member>
+        <Member type="Method">public void SetLoadMethod(LoadFunc loadFunction)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Delegate">
+        <Name>LoadFunc</Name>
+        <Access>Public</Access>
+        <Location left="1208" top="718" />
+        <Size width="162" height="97" />
+        <Collapsed>False</Collapsed>
+        <ReturnType>LoadState</ReturnType>
+      </Entity>
+      <Entity type="Class">
+        <Name>LoadState</Name>
+        <Access>Public</Access>
+        <Location left="1417" top="718" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public readonly int Progress</Member>
+        <Member type="Field">public readonly string ProgressLabel</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Input</Name>
+        <Access>Public</Access>
+        <Location left="1028" top="368" />
+        <Size width="162" height="230" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>feWindow</Name>
+        <Access>Public</Access>
+        <Location left="674" top="368" />
+        <Size width="286" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public readonly bool IsFullscreen</Member>
+        <Member type="Method">public void SetResolution(int width, int height)</Member>
+        <Member type="Method">public void SetVirtualResolution(int width, int height)</Member>
+        <Member type="Method">public void SetFullScreen(bool isFullScreen)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>feScene</Name>
+        <Access>Public</Access>
+        <Location left="748" top="739" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>API Layer</Text>
+        <Location left="260" top="307" />
+        <Size width="930" height="50" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>Framework Layer</Text>
+        <Location left="260" top="617" />
+        <Size width="930" height="50" />
+      </Entity>
+      <Entity type="Class">
+        <Name>feSceneController</Name>
+        <Access>Public</Access>
+        <Location left="274" top="739" />
+        <Size width="259" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void SetCurrentScene(feScene scene)</Member>
+        <Member type="Method">public void TransitionToScene(feScene nextScene)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>feISceneTransition</Name>
+        <Access>Public</Access>
+        <Location left="560" top="739" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>feDeferredLighting</Name>
+        <Access>Public</Access>
+        <Location left="737" top="1086" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="4" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

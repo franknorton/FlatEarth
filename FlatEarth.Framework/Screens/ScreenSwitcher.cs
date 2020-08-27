@@ -80,7 +80,7 @@ namespace FlatEarth.Screens
         }
         #endregion
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (transition != null)
                 UpdateTransition(gameTime);
@@ -100,7 +100,7 @@ namespace FlatEarth.Screens
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             
             if (transition == null)

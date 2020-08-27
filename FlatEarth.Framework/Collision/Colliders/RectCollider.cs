@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlatEarth.Collision
+namespace FlatEarth.Collision.Colliders
 {
     public class RectCollider : Collider
     {
@@ -15,37 +15,25 @@ namespace FlatEarth.Collision
         public float Width { get => width; set => width = value; }
         public float Height { get => height; set => height = value; }
 
-        public RectCollider(float width, float height, float x = 0, float y = 0)
+        public float Left => Position.X;
+        public float Right => Position.X + Width;
+        public float Top => Position.Y;
+        public float Bottom => Position.Y + Height;
+
+        public RectCollider(Vector2 position, float width, float height, bool isTrigger = false) : base(position, isTrigger)
         {
             this.width = width;
             this.height = height;
-            this.Position.X = x;
-            this.Position.Y = y;
         }
-
-        public override bool Collide(CircleCollider circle)
+        public RectCollider(float x, float y, float width, float height, bool isTrigger = false) : base(x, y, isTrigger)
         {
-            return Collision.Collide.RectToCircle(this, circle);
-        }
-
-        public override bool Collide(RectCollider rect)
-        {
-            return Collision.Collide.RectToRect(this, rect);
-        }
-
-        public override bool Collide(GridCollider grid)
-        {
-            return grid.Collide(this);
+            this.width = width;
+            this.height = height;
         }
 
         public Rectangle ToRectangle()
         {
             return new Rectangle((int)Position.X, (int)Position.Y, (int)Width, (int)Height);
-        }
-
-        public override void DebugRender()
-        {
-            DebugDraw.Rectangle(AbsolutePosition, Width, Height, Color.White, true);
         }
     }
 }

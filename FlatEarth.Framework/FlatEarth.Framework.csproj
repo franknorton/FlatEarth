@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1BE65D86-DB94-47B5-864B-4CC77773306E}</ProjectGuid>
+    <ProjectGuid>{D88C951F-57A0-4F8D-99DD-1A579F4272C0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FlatEarth</RootNamespace>
@@ -52,11 +52,11 @@
     <Compile Include="Animating\AnimationSet.cs" />
     <Compile Include="Calculate.cs" />
     <Compile Include="Collision\CohenSutherland.cs" />
-    <Compile Include="Collision\Collide.cs" />
     <Compile Include="Collision\Colliders\CircleCollider.cs" />
     <Compile Include="Collision\Colliders\Collider.cs" />
     <Compile Include="Collision\Colliders\ColliderList.cs" />
     <Compile Include="Collision\Colliders\GridCollider.cs" />
+    <Compile Include="Collision\Colliders\ICollider.cs" />
     <Compile Include="Collision\Colliders\RectCollider.cs" />
     <Compile Include="Collision\CollisionChecking.cs" />
     <Compile Include="Content.cs" />
@@ -134,6 +134,8 @@
     <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Notes\Stratchpad.md" />
+    <None Include="Notes\Todo.md" />
     <None Include="packages.config" />
     <None Include="Resources\defaultFont.xnb" />
     <None Include="Resources\LightEffect.xnb" />

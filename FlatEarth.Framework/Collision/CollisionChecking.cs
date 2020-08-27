@@ -1,4 +1,5 @@
-﻿using FlatEarth.DataStructures;
+﻿using FlatEarth.Collision.Colliders;
+using FlatEarth.DataStructures;
 using FlatEarth.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FlatEarth.Collision
 {
+    /// <summary>
+    /// Functions to check for collision using shapes represented by floats.
+    /// </summary>
     public static partial class CollisionChecking
     {
 
@@ -180,10 +184,11 @@ namespace FlatEarth.Collision
             return point1X == point2X && point1Y == point2Y;
         }
         #endregion
-
     }
 
-    //Monogame version
+    /// <summary>
+    /// Functions to check for collisions between Monogame types (Rectangle, Vector2, Point) and floats.
+    /// </summary>
     public static partial class CollisionChecking
     {
         #region Rectangles
@@ -280,7 +285,9 @@ namespace FlatEarth.Collision
         #endregion
     }
 
-    //Custom version
+    /// <summary>
+    /// Methods to check for collisions between Monogame types (Rectangle, Vector2, Point) or floats, and FlatEarth types (Circle, Line).
+    /// </summary>
     public static partial class CollisionChecking
     {
         #region Rectangles
@@ -454,5 +461,91 @@ namespace FlatEarth.Collision
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// Checking for collision between colliders.
+    /// </summary>
+    public static partial class CollisionChecking
+    {
+        public static bool Rectangles(RectCollider rectangle1, RectCollider rectangle2)
+        {
+            return Rectangles(rectangle1.Position.X, rectangle1.Position.Y, rectangle1.Width, rectangle1.Height, rectangle2.Position.X, rectangle2.Position.Y, rectangle2.Width, rectangle2.Height);
+        }
+        public static bool RectangleToCircle(RectCollider rectangle, CircleCollider circle)
+        {
+            return RectangleToCircle(rectangle.Position.X, rectangle.Position.Y, rectangle.Width, rectangle.Height, circle.Position.X, circle.Position.Y, circle.Radius);
+        }
+
+        public static bool RectangleToGrid(RectCollider rectangle, GridCollider grid)
+        {
+            var startX = (int)(rectangle.Position.X / grid.CellWidth);
+            var startY = (int)(rectangle.Position.Y / grid.CellHeight);
+            var endX = (int)(rectangle.Right / grid.CellWidth);
+            var endY = (int)(rectangle.Bottom / grid.CellHeight);
+
+            var index = new Point(0, 0);
+            for (int x = startX; x <= endX; x++)
+            {
+                for (int y = startY; y <= endY; y++)
+                {
+                    if (grid[x, y])
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+
+
+
+        public static bool CircleToRectangle(CircleCollider circle, RectCollider rectangle)
+        {
+            return CircleToRectangle(circle.Position.X, circle.Position.Y, circle.Radius, rectangle.Position.X, rectangle.Position.Y, rectangle.Width, rectangle.Height);
+        }
+
+        public static bool Circles(CircleCollider circle1, CircleCollider circle2)
+        {
+            return Circles(circle1.Position.X, circle1.Position.Y, circle1.Radius, circle2.Position.X, circle2.Position.Y, circle2.Radius);
+        }
+
+        public static bool CircleToGrid(CircleCollider circle, GridCollider grid)
+        {
+            var startX = (int)(circle.Left / grid.CellWidth);
+            var startY = (int)(circle.Top / grid.CellHeight);
+            var endX = (int)(circle.Right / grid.CellWidth);
+            var endY = (int)(circle.Bottom / grid.CellHeight);
+
+            var index = new Point(0, 0);
+            for (int x = startX; x <= endX; x++)
+            {
+                for (int y = startY; y <= endY; y++)
+                {
+                    if (grid[x, y])
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        public static bool GridToRectangle(GridCollider grid, RectCollider rectangle)
+        {
+            return RectangleToGrid(rectangle, grid);
+        }
+
+        public static bool GridToCircles(GridCollider grid, CircleCollider circle)
+        {
+            return CircleToGrid(circle, grid);
+        }
+
+        public static bool GridToGrid()
+        {
+            //Not sure this would ever be used so I'll leave this here for someone to prove me otherwise.
+            throw new NotImplementedException();
+        }
+
     }
 }

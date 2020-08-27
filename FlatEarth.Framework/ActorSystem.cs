@@ -31,7 +31,7 @@ namespace FlatEarth
                 }
 
                 actor.Position.X += xMove;
-                if (actor.CollidesWithAny(out var entities))
+                /*if (actor.CollidesWithAny(out var entities))
                 {
                     //Collision occured, revert movement and fire events.
                     if (entities.Any(x => !x.Collider.IsTrigger))
@@ -41,7 +41,7 @@ namespace FlatEarth
                         actor.MoveRemainderX = 0;
                     }
                     entities.ForEach(x => { actor.OnCollision(x); x.OnCollision(actor); });
-                }
+                }*/
 
                 var yMove = 0;
                 if (actor.MoveRemainderY > 1)
@@ -56,7 +56,7 @@ namespace FlatEarth
                 }
 
                 actor.Position.Y += yMove;
-                if (actor.CollidesWithAny(out entities))
+                /*if (actor.CollidesWithAny(out entities))
                 {
                     //Collision occured, revert movement and fire events
                     if (entities.Any(x => !x.Collider.IsTrigger))
@@ -66,7 +66,7 @@ namespace FlatEarth
                         actor.MoveRemainderY = 0;
                     }
                     entities.ForEach(x => { actor.OnCollision(x); x.OnCollision(actor); });
-                }
+                }*/
             }
 
             actor.DisplayPosition = actor.Position;

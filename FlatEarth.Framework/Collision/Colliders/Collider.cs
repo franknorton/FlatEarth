@@ -6,42 +6,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlatEarth.Collision
+namespace FlatEarth.Collision.Colliders
 {
-    public abstract class Collider
+    public abstract class Collider : ICollider
     {
-        public Vector2 Position;
-        public bool IsTrigger;
-        public Entity Entity;
-        public bool Active = true;
+        protected Vector2 position;
+        protected bool isTrigger;
 
-        public Vector2 AbsolutePosition {
-            get => Position + (Entity != null ? Entity.Position : Vector2.Zero);
-        }
-
-        public bool Collide(Entity entity)
+        /// <summary>
+        /// Initializes the collider at position 0,0.
+        /// </summary>
+        public Collider()
         {
-            return Collide(entity.Collider);
+            position = Vector2.Zero;
+            isTrigger = false;
         }
-        public bool Collide(Collider collider)
+        /// <summary>
+        /// Initializes the collider at the specified position.
+        /// </summary>
+        /// <param name="position">The initial position.</param>
+        /// <param name="isTrigger">Whether this collider is a trigger. Triggers detect but do not respond to collisions.</param>
+        public Collider(Vector2 position, bool isTrigger)
         {
-            if (collider == null)
-                return false;
-
-            switch (collider) {
-                case RectCollider rectCollider:
-                    return Collide(rectCollider);
-                case CircleCollider circleCollider:
-                    return Collide(circleCollider);
-                case GridCollider gridCollider:
-                    return Collide(gridCollider);
-                default:
-                    throw new ArgumentException($"Collider is of unknown type ({collider.GetType()})");
-            }
+            this.position = position;
+            this.isTrigger = isTrigger;
         }
-        public abstract bool Collide(CircleCollider circle);
-        public abstract bool Collide(RectCollider rect);
-        public abstract bool Collide(GridCollider grid);
-        public abstract void DebugRender();
+        /// <summary>
+        /// Initializes the collider at the specified position.
+        /// </summary>
+        /// <param name="x">The initial x position.</param>
+        /// <param name="y">The initial y position.</param>
+        /// <param name="isTrigger">Whether this collider is a trigger. Triggers detect but do not respond to collisions.</param>
+        public Collider(float x, float y, bool isTrigger)
+        {
+            position = new Vector2(x, y);
+            this.isTrigger = isTrigger;
+        }
+
+        public Vector2 Position { get => position; set => position = value; }
+        public bool IsTrigger { get => isTrigger; set => isTrigger = value; }
+
+        public void SetPosition(Vector2 newPosition)
+        {
+            position = newPosition;
+        }
+        public void SetPosition(float x, float y)
+        {
+            position.X = x;
+            position.Y = y;
+        }
+
+        public void MovePosition(Vector2 moveAmount)
+        {
+            position += moveAmount;
+        }
+        public void MovePosition(float xAmount, float yAmount)
+        {
+            position.X += xAmount;
+            position.Y += yAmount;
+        }
     }
 }
